@@ -78,20 +78,62 @@
 // myAdmin.login(); // ✅ Inherited from User
 // myAdmin.deleteUser("Guest123"); // ✅ Specific to Admin
 
-class Vehicle {
-  constructor(protected speed: number) {}
-  accelerate(a: number) {
-    this.speed += a;
+// class Vehicle {
+//   constructor(protected speed: number) {}
+//   accelerate(a: number) {
+//     this.speed += a;
+//   }
+// }
+// class Car extends Vehicle {
+//   constructor(speed: number) {
+//     super(speed);
+//   }
+//   checkSpeed() {
+//     console.log(`the current speed is ${this.speed}`);
+//   }
+// }
+// const newVeh = new Car(10);
+// newVeh.accelerate(10);
+// newVeh.checkSpeed();
+
+// abstract class Waste {
+//   constructor(public weight: number) {}
+
+//   getWeight() {
+//     return `${this.weight}kg`;
+//   }
+
+//   abstract recycle(): void;
+// }
+
+// class Plastic extends Waste {
+//   recycle() {
+//     console.log("Melting down the plastic...");
+//   }
+// }
+
+// class Organic extends Waste {
+//   recycle() {
+//     console.log("Composting the organic waste...");
+//   }
+// }
+
+// const bottle = new Plastic(2);
+// console.log(bottle.getWeight());
+
+// bottle.recycle();
+
+abstract class Shape {
+  constructor(side: number) {}
+  abstract getArea(): number;
+}
+class Square extends Shape {
+  constructor(private side: number) {
+    super(side);
+  }
+  getArea() {
+    return this.side * this.side;
   }
 }
-class Car extends Vehicle {
-  constructor(speed: number) {
-    super(speed);
-  }
-  checkSpeed() {
-    console.log(`the current speed is ${this.speed}`);
-  }
-}
-const newVeh = new Car(10);
-newVeh.accelerate(10);
-newVeh.checkSpeed();
+const calc = new Square(2);
+console.log(calc.getArea());
