@@ -53,14 +53,27 @@
 // console.log(phone1.totalPhonesCreated);
 // console.log("Opps there is something went wrong");
 
-export function partsSums(ls: number[]): number[] {
-  let cont = [];
-  for (let a = ls.length; a >= 0; a--) {
-    if (ls.length === a) {
-      cont.push(ls);
-      cont.pop();
-    }
+class User {
+  constructor(public username: string) {} // Short-cut: creates and sets property at once
+
+  login() {
+    console.log(`${this.username} logged in.`);
   }
-  return cont;
 }
-console.log(partsSums([0, 1, 3, 6, 10]));
+
+class Admin extends User {
+  constructor(
+    username: string,
+    public adminLevel: number,
+  ) {
+    super(username); // 📞 Calls the User constructor
+  }
+
+  deleteUser(target: string) {
+    console.log(`Admin ${this.username} is deleting ${target}`);
+  }
+}
+
+const myAdmin = new Admin("Mugisha", 1);
+myAdmin.login(); // ✅ Inherited from User
+myAdmin.deleteUser("Guest123"); // ✅ Specific to Admin
