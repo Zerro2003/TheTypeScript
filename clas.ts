@@ -53,27 +53,45 @@
 // console.log(phone1.totalPhonesCreated);
 // console.log("Opps there is something went wrong");
 
-class User {
-  constructor(public username: string) {} // Short-cut: creates and sets property at once
+// class User {
+//   constructor(public username: string) {} // Short-cut: creates and sets property at once
 
-  login() {
-    console.log(`${this.username} logged in.`);
+//   login() {
+//     console.log(`${this.username} logged in.`);
+//   }
+// }
+
+// class Admin extends User {
+//   constructor(
+//     username: string,
+//     public adminLevel: number,
+//   ) {
+//     super(username); // 📞 Calls the User constructor
+//   }
+
+//   deleteUser(target: string) {
+//     console.log(`Admin ${this.username} is deleting ${target}`);
+//   }
+// }
+
+// const myAdmin = new Admin("Mugisha", 1);
+// myAdmin.login(); // ✅ Inherited from User
+// myAdmin.deleteUser("Guest123"); // ✅ Specific to Admin
+
+class Vehicle {
+  constructor(protected speed: number) {}
+  accelerate(a: number) {
+    this.speed += a;
   }
 }
-
-class Admin extends User {
-  constructor(
-    username: string,
-    public adminLevel: number,
-  ) {
-    super(username); // 📞 Calls the User constructor
+class Car extends Vehicle {
+  constructor(speed: number) {
+    super(speed);
   }
-
-  deleteUser(target: string) {
-    console.log(`Admin ${this.username} is deleting ${target}`);
+  checkSpeed() {
+    console.log(`the current speed is ${this.speed}`);
   }
 }
-
-const myAdmin = new Admin("Mugisha", 1);
-myAdmin.login(); // ✅ Inherited from User
-myAdmin.deleteUser("Guest123"); // ✅ Specific to Admin
+const newVeh = new Car(10);
+newVeh.accelerate(10);
+newVeh.checkSpeed();
